@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { observer } from "mobx-react-lite";
-import repositoryStore from "../Store/data_store";
-import { Repository } from "../Store/data_store";
+import repositoryStore from "../Store/RepositoryStore";
+import { Repository } from "../Store/RepositoryStore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
 import {

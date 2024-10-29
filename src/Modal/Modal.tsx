@@ -7,8 +7,8 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { Repository } from "../Store/data_store";
-import repositoryStore from "../Store/data_store"; 
+import { Repository } from "../Store/RepositoryStore";
+import repositoryStore from "../Store/RepositoryStore"; 
 
 interface EditRepositoryProps {
   open: boolean;
