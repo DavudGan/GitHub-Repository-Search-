@@ -40,7 +40,6 @@ interface GitHubAPIResponse {
 }
 
 class RepositoryStore {
-  displayedRepositories: Repository[] = [];
   repositories: Repository[] = [];
   loading = false;
   error: string | null = null;
@@ -115,6 +114,17 @@ class RepositoryStore {
         this.loading = false;
       });
     }
+  }
+
+
+  delete(item: Repository) {
+    this.repositories = this.repositories.filter((repo) => repo.id !== item.id);
+  }
+
+  edit(item: Repository, name:string, description:string){
+    const idItem = this.repositories.indexOf(item)
+    this.repositories[idItem].description = description
+    this.repositories[idItem].name = name
   }
 }
 

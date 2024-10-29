@@ -1,7 +1,7 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import { observer } from "mobx-react-lite";
-import repositoryStore from "./Store/data_store";
-import { Repository } from "./Store/data_store";
+import repositoryStore from "../Store/data_store";
+import { Repository } from "../Store/data_store";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CreateIcon from "@mui/icons-material/Create";
 import {
@@ -12,9 +12,12 @@ import {
   CircularProgress,
   IconButton,
 } from "@mui/material";
+import Modal from '../Modal/Modal'
 
 const RepositoryList = observer(() => {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const [editOpen, setEditOpen] = useState(false);
+  const [selectedRepository, setSelectedRepository] = useState<Repository | null>(null);
 
   useEffect(() => {
     repositoryStore.fetchRepositories("react");
@@ -40,13 +43,17 @@ const RepositoryList = observer(() => {
     ]
   );
 
+  const handleEdit = (repo: Repository) => {
+    setSelectedRepository(repo);
+    setEditOpen(true);
+  };
   return (
     <Box sx={{ maxWidth: 800, margin: "auto", padding: 2 }}>
       <Typography variant="h4" gutterBottom>
         Repositories
       </Typography>
       <Box>
-        {repositoryStore.repositories.map((repo: Repository, index: number) => (
+        {repositoryStore.repositories.map((repo, index: number) => (
           <Card
             key={repo.id}
             ref={
@@ -75,14 +82,15 @@ const RepositoryList = observer(() => {
                 edge="end"
                 aria-label="delete"
                 sx={{ marginRight: 2 }}
-                onClick={()=>console.log('Bay')}
+                onClick={()=>repositoryStore.delete(repo)}
               >
                 <DeleteIcon />
               </IconButton>
               <IconButton
                 edge="end"
-                aria-label="delete"
+                aria-label="create"
                 sx={{ marginRight: 2 }}
+                onClick={()=>handleEdit(repo)}
               >
                 <CreateIcon />
               </IconButton>
@@ -95,6 +103,13 @@ const RepositoryList = observer(() => {
           <CircularProgress />
         </Box>
       )}
+      
+        <Modal
+          open={editOpen}
+          onClose={() => setEditOpen(false)}
+          repo={selectedRepository}
+        />
+      
     </Box>
   );
 });
