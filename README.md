@@ -1,4 +1,4 @@
-#GitHub-Repository-Search
+# GitHub-Repository-Search
 Данный мини проект реализован для стажировки ВКонтакте.
 
 ## Используемые технологии
