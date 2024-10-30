@@ -23,7 +23,7 @@
 - **Поддержка TypeScript**.
 
 ## Как запустит проект:
-- Создай `.env` файл с переменной `VITE_REACT_APP_GITHUB_TOKEN = 'GitGub_Token'`
+- Создай `.env` файл с переменной `VITE_REACT_APP_GITHUB_TOKEN = 'GitGub_Token'` (сгенерируй свой токен https://github.com/settings/tokens и вставь вместо `GitGub_Token`)
 - `npm i`
 - `npm run dev`
 
