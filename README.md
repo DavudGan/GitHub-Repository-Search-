@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+#GitHub-Repository-Search
+Данный мини проект реализован для стажировки ВКонтакте.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Используемые технологии
 
-Currently, two official plugins are available:
+В проекте использованы следующие технологии:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** — библиотека для создания пользовательских интерфейсов.
+- **Vite** — для сборки.
+- **TypeScript** — типизация.
+- **MobX** — библиотека для управления состоянием.
+- **Material-UI (MUI)** — набор компонентов.
+- **Jest** — для создания модульных тестов.
+- **React Testing Library** — библиотека для тестирования React-компонентов.
 
-## Expanding the ESLint configuration
+## Почему Material-UI (MUI)?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Единый стиль**.
+- **Экономия времени и ресурсов**.
+- **Высокий уровень кастомизации**.
+- **Поддержка адаптивного дизайна**.
+- **Xорошая документация**.
+- **Поддержка TypeScript**.
 
-- Configure the top-level `parserOptions` property like this:
+## Как запустит проект:
+- Создай `.env` файл с переменной `VITE_REACT_APP_GITHUB_TOKEN = 'GitGub_Token'`
+- `npm i`
+- `npm run dev`
+
+## Запускаем тесты: 
+Для запуска тестов нужно в файле `RepositoryStore.ts` изменит переменную `const GITHUB_TOKEN = import.meta.env.VITE_REACT_APP_GITHUB_TOKEN`:
 
 ```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+import { makeAutoObservable, runInAction } from "mobx";
+
+const GITHUB_API_URL = "https://api.github.com/graphql";
+const GITHUB_TOKEN = 'import.meta.env.VITE_REACT_APP_GITHUB_TOKEN';//Это поможет избавиться от ошибки с import.meta.
+
+interface LicenseInfo {
+  name: string | null;
+}
+
+interface PrimaryLanguage {
+  name: string | null;
+}
+//Код...
 ```
+Запускаем тест: `npm test`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
