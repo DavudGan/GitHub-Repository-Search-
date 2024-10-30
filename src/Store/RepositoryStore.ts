@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 const GITHUB_API_URL = "https://api.github.com/graphql";
-const GITHUB_TOKEN = ''//import.meta.env.VITE_REACT_APP_GITHUB_TOKEN;
+const GITHUB_TOKEN = import.meta.env.VITE_REACT_APP_GITHUB_TOKEN;
 
 interface LicenseInfo {
   name: string | null;
