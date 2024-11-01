@@ -28,7 +28,7 @@
 - `npm run dev`
 
 ## Запускаем тесты: 
-Для запуска тестов нужно в файле `RepositoryStore.ts` изменит переменную `const GITHUB_TOKEN = import.meta.env.VITE_REACT_APP_GITHUB_TOKEN`:
+Для запуска тестов нужно в файле `RepositoryStore.ts` изменить переменную `const GITHUB_TOKEN = import.meta.env.VITE_REACT_APP_GITHUB_TOKEN`:
 
 ```js
 import { makeAutoObservable, runInAction } from "mobx";
